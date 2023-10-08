@@ -1,0 +1,40 @@
+apiVersion: apps.hstream.io/v1alpha2
+kind: HStreamDB
+metadata:
+  name: {{ include "hstreamdb.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "hstreamdb.labels" . | nindent 4 }}
+spec:
+  hserver:
+    image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+    imagePullPolicy: {{ .Values.image.pullPolicy }}
+    replicas: {{ .Values.hserver.replicaCount }}
+    container:
+      name: {{ .Values.hserver.name }}
+  hstore:
+    image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+    imagePullPolicy: {{ .Values.image.pullPolicy }}
+    replicas: {{ .Values.hstore.replicaCount }}
+    container:
+      name: {{ .Values.hstore.name }}
+    volumeClaimTemplate:
+      {{- with .Values.hstore.volumeClaimTemplate }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
+  adminServer:
+    image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+    imagePullPolicy: {{ .Values.image.pullPolicy }}
+    replicas: {{ .Values.adminServer.replicaCount }}
+    container:
+      name: {{ .Values.adminServer.name }}
+  hmeta:
+    image: rqlite/rqlite:latest
+    imagePullPolicy: {{ .Values.image.pullPolicy }}
+    replicas: {{ .Values.hmeta.replicaCount }}
+    container:
+      name: {{ .Values.hmeta.name }}
+    volumeClaimTemplate:
+      {{- with .Values.hmeta.volumeClaimTemplate }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
