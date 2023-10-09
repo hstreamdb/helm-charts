@@ -131,3 +131,18 @@ hmeta:
       resources:
         requests:
           storage: 5Gi
+
+exporter:
+  enabled: false
+  # Name of the exporter component.
+  name: hstream-exporter
+
+gateway:
+  enabled: false
+  # Name of the gateway component.
+  name: hstream-gateway
+
+console:
+  enabled: false
+  # Name of the console component.
+  name: hstream-console

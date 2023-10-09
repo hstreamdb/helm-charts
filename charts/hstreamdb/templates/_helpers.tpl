@@ -48,7 +48,6 @@ Selector labels
 {{- define "hstreamdb.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "hstreamdb.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
-app.kubernetes.io/component: {{ include "hstreamdb.name" . }}
 {{- end }}
 
 {{/*

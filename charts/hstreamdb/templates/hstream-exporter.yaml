@@ -1,0 +1,54 @@
+{{- if .Values.exporter.enabled -}}
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.exporter.name }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "hstreamdb.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 9250
+  selector:
+    hstream.io/component: exporter
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.exporter.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "hstreamdb.labels" . | nindent 4 }}
+    hstream.io/component: exporter
+spec:
+  serviceName: hstream-exporter
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hstream-exporter
+  template:
+    metadata:
+      labels:
+        app: hstream-exporter
+    spec:
+      containers:
+        - name: hstream-exporter
+          image: "hstreamdb/hstream-exporter"
+          imagePullPolicy: IfNotPresent
+          command:
+            - bash
+            - "-c"
+            - |
+              set -ex
+              /usr/local/bin/hstream-exporter \
+              -addr "hstream://hstreamdb-internal-hserver.default:6570" \
+              -listen-addr "0.0.0.0:9250"
+          ports:
+            - name: http
+              containerPort: 9250
+
+{{- end }}
