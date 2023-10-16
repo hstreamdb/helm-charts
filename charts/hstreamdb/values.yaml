@@ -103,6 +103,8 @@ hserver:
   name: hserver
   replicaCount: 3
 
+storageClassName: &globalStorageClassName "standard"
+
 hstore:
   # Name of the hstore component.
   name: hstore
@@ -110,7 +112,7 @@ hstore:
   volumeClaimTemplate:
     # The spec of the PersistentVolumeClaim to create. Must be set.
     spec:
-      storageClassName: standard
+      storageClassName: *globalStorageClassName
       resources:
         requests:
           storage: 5Gi
@@ -127,7 +129,7 @@ hmeta:
   volumeClaimTemplate:
     # The spec of the PersistentVolumeClaim to create. Must be set.
     spec:
-      storageClassName: standard
+      storageClassName: *globalStorageClassName
       resources:
         requests:
           storage: 1Gi
