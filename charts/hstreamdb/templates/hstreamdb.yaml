@@ -29,7 +29,7 @@ spec:
     container:
       name: {{ .Values.adminServer.name }}
   hmeta:
-    image: rqlite/rqlite:latest
+    image: rqlite/rqlite:{{ .Values.hmeta.rqlite.version }}
     imagePullPolicy: {{ .Values.image.pullPolicy }}
     replicas: {{ .Values.hmeta.replicaCount }}
     container:

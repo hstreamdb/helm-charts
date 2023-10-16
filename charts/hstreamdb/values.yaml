@@ -4,7 +4,7 @@
 
 image:
   repository: hstreamdb/hstream
-  tag: rqlite
+  tag: rqlite_v0.17.3
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -123,19 +123,16 @@ adminServer:
 hmeta:
   # Name of the hmeta component.
   name: hmeta
-  replicaCount: 1
+  replicaCount: 3
   volumeClaimTemplate:
     # The spec of the PersistentVolumeClaim to create. Must be set.
     spec:
       storageClassName: standard
       resources:
         requests:
-          storage: 5Gi
-
-exporter:
-  enabled: false
-  # Name of the exporter component.
-  name: hstream-exporter
+          storage: 1Gi
+  rqlite:
+    version: 7.21.4
 
 gateway:
   enabled: false
