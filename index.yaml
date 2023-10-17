@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  hstreamdb:
+  - apiVersion: v2
+    appVersion: 0.17.3
+    created: "2023-10-17T09:39:46.796194709Z"
+    description: Helm charts for HStreamDB
+    digest: 5138ac9cc8ef4f179dc1aef30cedb81a1fd4a5402bb8c0b37d597ecddb6fbd2a
+    name: hstreamdb
+    type: application
+    urls:
+    - https://github.com/hstreamdb/helm-charts/releases/download/hstreamdb-0.1.0/hstreamdb-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-10-17T09:39:46.796199909Z"
