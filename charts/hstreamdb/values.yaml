@@ -136,12 +136,12 @@ hmeta:
   rqlite:
     version: 7.21.4
 
-gateway:
-  enabled: false
-  # Name of the gateway component.
-  name: hstream-gateway
+# gateway:
+#   enabled: false
+#   # Name of the gateway component.
+#   name: hstream-gateway
 
-console:
-  enabled: false
-  # Name of the console component.
-  name: hstream-console
+# console:
+#   enabled: false
+#   # Name of the console component.
+#   name: hstream-console
