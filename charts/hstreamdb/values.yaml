@@ -103,19 +103,14 @@ hserver:
   name: hserver
   replicaCount: 3
 
-storageClassName: &globalStorageClassName "standard"
+storageClassName: "standard"
 
 hstore:
   # Name of the hstore component.
   name: hstore
   replicaCount: 3
-  volumeClaimTemplate:
-    # The spec of the PersistentVolumeClaim to create. Must be set.
-    spec:
-      storageClassName: *globalStorageClassName
-      resources:
-        requests:
-          storage: 5Gi
+  # Storage size for PVC requests. Must be set.
+  storage: 5Gi
 
 adminServer:
   # Name of the admin-server component.
@@ -126,13 +121,8 @@ hmeta:
   # Name of the hmeta component.
   name: hmeta
   replicaCount: 3
-  volumeClaimTemplate:
-    # The spec of the PersistentVolumeClaim to create. Must be set.
-    spec:
-      storageClassName: *globalStorageClassName
-      resources:
-        requests:
-          storage: 1Gi
+  # Storage size for PVC requests. Must be set.
+  storage: 1Gi
   rqlite:
     version: 7.21.4
 
