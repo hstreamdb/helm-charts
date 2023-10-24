@@ -131,7 +131,12 @@ hmeta:
 #   # Name of the gateway component.
 #   name: hstream-gateway
 
-# console:
-#   enabled: false
-#   # Name of the console component.
-#   name: hstream-console
+console:
+  enabled: false
+  # Name of the console component.
+  name: hstreamdb-console
+  replicaCount: 1
+  servicePorts:
+    - name: http
+      port: 5177
+      nodePort: 31777

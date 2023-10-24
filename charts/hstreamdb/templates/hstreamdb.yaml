@@ -31,3 +31,12 @@ spec:
     container:
       name: {{ .Values.hmeta.name }}
     volumeClaimTemplate: {{- include "hstreamdb.hmeta.volumeClaimTemplate" . | indent 6 }}
+  console:
+    image: hstreamdb/hstream-console
+    imagePullPolicy: {{ .Values.image.pullPolicy }}
+    replicas: {{ .Values.console.replicaCount }}
+    container:
+      name: {{ .Values.console.name }}
+      env:
+        - name: HSTREAM_PRIVATE_ADDRESS
+          value: {{ include "hstreamdb.fullname" . }}-internal-hserver:6570
