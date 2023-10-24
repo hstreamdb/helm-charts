@@ -136,6 +136,7 @@ console:
   # Name of the console component.
   name: hstreamdb-console
   replicaCount: 1
+  env:
   servicePorts:
     - name: http
       port: 5177
