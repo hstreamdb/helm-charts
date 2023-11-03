@@ -3,7 +3,7 @@ kind: HStreamDB
 metadata:
   name: {{ include "hstreamdb.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
-  labels: {{- include "hstreamdb.labels" . | nindent 4 }}
+  labels: {{ include "hstreamdb.labels" . | nindent 4 }}
 spec:
   hserver:
     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -17,7 +17,7 @@ spec:
     replicas: {{ .Values.hstore.replicaCount }}
     container:
       name: {{ .Values.hstore.name }}
-    volumeClaimTemplate: {{- include "hstreamdb.hstore.volumeClaimTemplate" . | indent 6 }}
+    volumeClaimTemplate: {{ include "hstreamdb.hstore.volumeClaimTemplate" . | indent 6 }}
   adminServer:
     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
     imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -30,7 +30,7 @@ spec:
     replicas: {{ .Values.hmeta.replicaCount }}
     container:
       name: {{ .Values.hmeta.name }}
-    volumeClaimTemplate: {{- include "hstreamdb.hmeta.volumeClaimTemplate" . | indent 6 }}
+    volumeClaimTemplate: {{ include "hstreamdb.hmeta.volumeClaimTemplate" . | indent 6 }}
   {{- if .Values.console.enabled }}
   console:
     image: hstreamdb/hstream-console
