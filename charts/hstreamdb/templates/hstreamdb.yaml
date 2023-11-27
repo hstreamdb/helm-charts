@@ -33,7 +33,7 @@ spec:
     volumeClaimTemplate: {{ include "hstreamdb.hmeta.volumeClaimTemplate" . | indent 6 }}
   {{- if .Values.console.enabled }}
   console:
-    image: hstreamdb/hstream-console
+    image: {{ .Values.console.image }}
     imagePullPolicy: {{ .Values.image.pullPolicy }}
     replicas: {{ .Values.console.replicaCount }}
     container:

@@ -107,6 +107,7 @@ console:
   enabled: false
   # Name of the console component.
   name: hstreamdb-console
+  image: hstreamdb/hstream-console:v1.0.0-beta7
   replicaCount: 1
   env:
   servicePorts:
