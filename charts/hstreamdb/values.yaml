@@ -70,6 +70,9 @@ tolerations: []
 
 affinity: {}
 
+logDeviceConfig:
+  # version: 2
+
 hserver:
   # Name of the hserver component.
   name: hserver
@@ -82,7 +85,7 @@ hstore:
   name: hstore
   replicaCount: 3
   # Storage size for PVC requests. Must be set.
-  storage: 5Gi
+  storage: 1Gi
 
 adminServer:
   # Name of the admin-server component.

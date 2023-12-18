@@ -5,6 +5,11 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
   labels: {{ include "hstreamdb.labels" . | nindent 4 }}
 spec:
+  config:
+    logDeviceConfig:
+      {{- with .Values.logDeviceConfig }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
   hserver:
     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
     imagePullPolicy: {{ .Values.image.pullPolicy }}
