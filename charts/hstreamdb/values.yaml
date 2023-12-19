@@ -101,10 +101,13 @@ hmeta:
   rqlite:
     version: 7.21.4
 
-# gateway:
-#   enabled: false
-#   # Name of the gateway component.
-#   name: hstream-gateway
+gateway:
+  enabled: false
+  # Name of the gateway component.
+  name: hstream-gateway
+  image: hstreamdb/hstream-gateway
+  replicaCount: 1
+  env:
 
 console:
   enabled: false

@@ -36,6 +36,19 @@ spec:
     container:
       name: {{ .Values.hmeta.name }}
     volumeClaimTemplate: {{ include "hstreamdb.hmeta.volumeClaimTemplate" . | indent 6 }}
+  {{- if .Values.gateway.enabled }}
+  gateway:
+    endpoint: {{ include "hstreamdb.fullname" . }}-internal-hserver:6570
+    image: {{ .Values.gateway.image }}
+    imagePullPolicy: {{ .Values.image.pullPolicy }}
+    replicas: {{ .Values.gateway.replicaCount }}
+    container:
+      name: {{ .Values.gateway.name }}
+      env:
+        {{- with .Values.gateway.env }}
+        {{- toYaml . | nindent 8 }}
+        {{- end -}}
+  {{- end }}
   {{- if .Values.console.enabled }}
   console:
     image: {{ .Values.console.image }}
