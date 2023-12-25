@@ -6,10 +6,9 @@ metadata:
   labels: {{ include "hstreamdb.labels" . | nindent 4 }}
 spec:
   config:
-    logDeviceConfig:
-      {{- with .Values.logDeviceConfig }}
-      {{- toYaml . | nindent 6 }}
-      {{- end }}
+    {{- with .Values.clusterConfig }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   hserver:
     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
     imagePullPolicy: {{ .Values.image.pullPolicy }}

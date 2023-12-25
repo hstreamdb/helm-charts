@@ -4,7 +4,7 @@
 
 image:
   repository: hstreamdb/hstream
-  tag: rqlite_v0.17.3
+  tag: rqlite
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -70,8 +70,8 @@ tolerations: []
 
 affinity: {}
 
-logDeviceConfig:
-  # version: 2
+clusterConfig:
+  logDeviceConfig:
 
 hserver:
   # Name of the hserver component.
@@ -113,7 +113,7 @@ console:
   enabled: false
   # Name of the console component.
   name: hstreamdb-console
-  image: hstreamdb/hstream-console:v1.0.0-beta7
+  image: hstreamdb/hstream-kafka-console
   replicaCount: 1
   env:
   servicePorts:
