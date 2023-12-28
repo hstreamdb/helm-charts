@@ -29,6 +29,7 @@ hserver:
   # Name of the hserver component.
   name: hserver
   replicaCount: 3
+  container:
 
 storageClassName: "standard"
 
@@ -38,11 +39,13 @@ hstore:
   replicaCount: 3
   # Storage size for PVC requests. Must be set.
   storage: 1Gi
+  container:
 
 adminServer:
   # Name of the admin-server component.
   name: admin-server
   replicaCount: 1
+  container:
 
 hmeta:
   # Name of the hmeta component.

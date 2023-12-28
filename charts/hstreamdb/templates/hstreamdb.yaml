@@ -15,12 +15,18 @@ spec:
     replicas: {{ .Values.hserver.replicaCount }}
     container:
       name: {{ .Values.hserver.name }}
+      {{- if .Values.hserver.container }}
+      {{- toYaml .Values.hserver.container | nindent 6 }}
+      {{- end }}
   hstore:
     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
     imagePullPolicy: {{ .Values.image.pullPolicy }}
     replicas: {{ .Values.hstore.replicaCount }}
     container:
       name: {{ .Values.hstore.name }}
+      {{- if .Values.hstore.container }}
+      {{- toYaml .Values.hstore.container | nindent 6 }}
+      {{- end }}
     volumeClaimTemplate: {{ include "hstreamdb.hstore.volumeClaimTemplate" . | indent 6 }}
   adminServer:
     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -28,6 +34,9 @@ spec:
     replicas: {{ .Values.adminServer.replicaCount }}
     container:
       name: {{ .Values.adminServer.name }}
+      {{- if .Values.adminServer.container }}
+      {{- toYaml .Values.adminServer.container | nindent 6 }}
+      {{- end }}
   hmeta:
     image: rqlite/rqlite:{{ .Values.hmeta.rqlite.version }}
     imagePullPolicy: {{ .Values.image.pullPolicy }}
