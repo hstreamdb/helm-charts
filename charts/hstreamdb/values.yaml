@@ -56,21 +56,13 @@ hmeta:
   rqlite:
     version: 7.21.4
 
-# gateway:
-#   enabled: false
-#   # Name of the gateway component.
-#   name: hstream-gateway
-#   image: hstreamdb/hstream-gateway
-#   replicaCount: 1
-#   env:
-
 console:
   enabled: false
   # Name of the console component.
   name: hstreamdb-console
   image: hstreamdb/hstream-kafka-console
   replicaCount: 1
-  env:
+  container:
   servicePorts:
     - name: http
       port: 5177
