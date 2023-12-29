@@ -37,3 +37,14 @@ Below table lists the configurable parameters of the HStreamDB chart and their d
 | `console.replicaCount`          | Console component replica count.                                                        | `1`                               |
 | `console.container`             | Console container configuration. <https://kubernetes.io/docs/concepts/containers/>      |                                   |
 | `console.servicePorts`          | Specify node ports for Console component. See [values.yaml](./values.yaml) for details. | `31777`                           |
+
+## Common usage
+
+### Provide storage
+
+Most of time, you need to specify the `storageClassName` value to provide storage for HStreamDB cluster. For example,
+below command will install HStreamDB cluster under microk8s with hostpath-storage enabled.
+
+```sh
+helm install hstreamdb hstreamdb/hstreamdb -n hstreamdb --create-namespace --set storageClassName=microk8s-hostpath
+```
