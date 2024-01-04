@@ -3,6 +3,17 @@ entries:
   hstreamdb:
   - apiVersion: v2
     appVersion: latest
+    created: "2024-01-04T08:49:31.980425845Z"
+    description: Helm charts for HStreamDB
+    digest: 9a2b0b5096f7c539462445ea2e0d2c2b363e56c36807cbd2e686d6bbb225be31
+    home: https://github.com/hstreamdb/helm-charts
+    name: hstreamdb
+    type: application
+    urls:
+    - https://github.com/hstreamdb/helm-charts/releases/download/hstreamdb-0.3.0/hstreamdb-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
+    appVersion: latest
     created: "2023-12-29T06:51:38.203909743Z"
     description: Helm charts for HStreamDB
     digest: 4207c07f0fcb1e8bb186fa75f63d9c0e5d8ac8beee21dc79f77872bd4d7994c5
@@ -22,4 +33,4 @@ entries:
     urls:
     - https://github.com/hstreamdb/helm-charts/releases/download/hstreamdb-0.1.0/hstreamdb-0.1.0.tgz
     version: 0.1.0
-generated: "2023-12-29T06:51:38.203927557Z"
+generated: "2024-01-04T08:49:31.980443899Z"
