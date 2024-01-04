@@ -63,6 +63,7 @@ console:
   image: hstreamdb/hstream-kafka-console
   replicaCount: 1
   container:
+    env:
   servicePorts:
     - name: http
       port: 5177

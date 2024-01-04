@@ -56,7 +56,7 @@ spec:
       {{- end }}
       env:
         - name: HSTREAM_PRIVATE_ADDRESS
-          value: {{ include "hstreamdb.fullname" . }}-internal-hserver:6570
+          value: {{ include "hstreamdb.fullname" . }}-internal-hserver:9092
         {{- with .Values.console.container.env }}
         {{- toYaml . | nindent 8 }}
         {{- end -}}
