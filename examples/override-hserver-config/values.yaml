@@ -1,0 +1,38 @@
+storageClassName: "microk8s-hostpath"
+
+hserver:
+  container:
+    args:
+      # Overriding the default config of hserver.
+      - --config-path
+      - /etc/tmp/hstream/config-override.yaml
+    volumeMounts:
+      - name: hserver-tmp-vol
+        mountPath: /etc/tmp/hstream
+  initContainers:
+    - name: mount-hserver-config
+      image: hstreamdb/hstream:rqlite
+      command:
+        - "bash"
+        - "-c"
+        - "cp /etc/hstream/config.yaml /etc/tmp/hstream/config.yaml"
+      volumeMounts:
+        - name: hserver-tmp-vol
+          mountPath: /etc/tmp/hstream
+    - name: override-hserver-config
+      image: mikefarah/yq:4.35.2
+      command:
+        - "sh"
+        - "-c"
+        - "yq ea '. as $item ireduce ({}; . * $item)' /etc/tmp/hstream/config.yaml /etc/custom/hstream/config.yaml > /etc/tmp/hstream/config-override.yaml"
+      volumeMounts:
+        - name: hserver-custom-config-vol
+          mountPath: /etc/custom/hstream
+        - name: hserver-tmp-vol
+          mountPath: /etc/tmp/hstream
+  volumes:
+    - name: hserver-custom-config-vol
+      configMap:
+        name: hserver-custom-config
+    - name: hserver-tmp-vol
+      emptyDir: {}

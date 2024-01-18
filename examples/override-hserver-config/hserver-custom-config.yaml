@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hserver-custom-config
+  namespace: hstreamdb
+data:
+  config.yaml: |
+    hserver:
+      # Server port value, the value must be given and can be overwritten by cli
+      # option `--port`
+      port: 6580
+
+      # Server port value for internal communications between server nodes,
+      # the value must be given
+      # and can be overwritten by cli option `--internal-port`
+      internal-port: 6581
