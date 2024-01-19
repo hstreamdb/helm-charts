@@ -26,7 +26,6 @@ Before you begin, make sure you have the following:
 3. Edit and apply the custom configuration first:
 
    ```sh
-   vi hserver-custom-config.yaml
    kubectl apply -f hserver-custom-config.yaml
    ```
 

@@ -1,0 +1,29 @@
+apiVersion: apps.hstream.io/v1beta1
+kind: Connector
+metadata:
+  name: sink-es
+spec:
+  type: sink-elasticsearch
+  templateName: sink-es # You need to provide a template for this connector first.
+  streams:
+    - stream01
+  patches:
+    stream01:
+      offsetStream: stream01-offset
+      index: index01
+  hserverEndpoint: hstreamdb-internal-hserver.hstreamdb:6570
+  containers:
+    - name: log
+      image: busybox:1.36
+      command:
+        - "/bin/sh"
+        - "-c"
+        - "sleep 5 && tail -F /data/app.log"
+      volumeMounts:
+        - name: data
+          mountPath: /data # sink-elasticsearch will write logs to this path.
+      resources:
+        limits:
+          cpu: 300m
+        requests:
+          cpu: 100m
