@@ -48,3 +48,7 @@ below command will install HStreamDB cluster under microk8s with hostpath-storag
 ```sh
 helm install hstreamdb hstreamdb/hstreamdb -n hstreamdb --create-namespace --set storageClassName=microk8s-hostpath
 ```
+
+### Integrate with Prometheus
+
+HStreamDB cluster provides metrics for Prometheus. View [Prometheus integration](./prometheus.md) for details.
