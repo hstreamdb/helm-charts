@@ -5,6 +5,10 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
   labels: {{ include "hstreamdb.labels" . | nindent 4 }}
 spec:
+  externalHmeta:
+    host: hstreamdb-hmeta
+    port: 80
+    namespace: hstreamdb
   config:
     {{- with .Values.clusterConfig }}
     {{- toYaml . | nindent 4 }}
@@ -53,13 +57,6 @@ spec:
       {{- if .Values.adminServer.container }}
       {{- toYaml .Values.adminServer.container | nindent 6 }}
       {{- end }}
-  hmeta:
-    image: rqlite/rqlite:{{ .Values.hmeta.rqlite.version }}
-    imagePullPolicy: {{ .Values.image.pullPolicy }}
-    replicas: {{ .Values.hmeta.replicaCount }}
-    container:
-      name: {{ .Values.hmeta.name }}
-    volumeClaimTemplate: {{ include "hstreamdb.hmeta.volumeClaimTemplate" . | indent 6 }}
   {{- if .Values.console.enabled }}
   console:
     image: {{ .Values.console.image }}

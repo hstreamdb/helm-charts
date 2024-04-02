@@ -47,14 +47,10 @@ adminServer:
   replicaCount: 1
   container:
 
-hmeta:
-  # Name of the hmeta component.
-  name: hmeta
+rqlite:
   replicaCount: 3
-  # Storage size for PVC requests. Must be set.
-  storage: 1Gi
-  rqlite:
-    version: 7.21.4
+  persistence:
+    size: 2Gi
 
 console:
   enabled: false
