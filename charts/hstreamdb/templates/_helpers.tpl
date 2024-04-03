@@ -71,22 +71,16 @@ Below are custom templates for hstreamdb.
 Create volumeClaimTemplate for hstore.
 */}}
 {{- define "hstreamdb.hstore.volumeClaimTemplate" -}}
-{{- $globalStorageClassName := default "standard" .Values.storageClassName }}
+{{- if .Values.storageClassName }}
 spec:
-  storageClassName: {{ print $globalStorageClassName }}
+  storageClassName: {{ .Values.storageClassName }}
+  resources:
+    requests:
+      storage: {{ .Values.hstore.storage }}
+{{- else }}
+spec:
   resources:
     requests:
       storage: {{ .Values.hstore.storage }}
 {{- end }}
-
-{{/*
-Create volumeClaimTemplate for hmeta.
-*/}}
-{{- define "hstreamdb.hmeta.volumeClaimTemplate" -}}
-{{- $globalStorageClassName := default "standard" .Values.storageClassName }}
-spec:
-  storageClassName: {{ print $globalStorageClassName }}
-  resources:
-    requests:
-      storage: {{ .Values.hmeta.storage }}
 {{- end }}

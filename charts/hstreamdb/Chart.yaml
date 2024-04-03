@@ -26,5 +26,5 @@ appVersion: "latest"
 
 dependencies:
   - name: rqlite
-    version: "^1.5.0"
+    version: "^1.7.0"
     repository: https://rqlite.github.io/helm-charts

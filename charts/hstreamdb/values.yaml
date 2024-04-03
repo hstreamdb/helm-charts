@@ -31,7 +31,7 @@ hserver:
   replicaCount: 3
   container:
 
-storageClassName: "standard"
+storageClassName:
 
 hstore:
   # Name of the hstore component.
@@ -48,9 +48,10 @@ adminServer:
   container:
 
 rqlite:
+  nameOverride: hstreamdb-rqlite
   replicaCount: 3
   persistence:
-    size: 2Gi
+    size: 1Gi
 
 console:
   enabled: false
