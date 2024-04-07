@@ -5,14 +5,14 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
   labels: {{ include "hstreamdb.labels" . | nindent 4 }}
 spec:
-  externalHmeta:
-    host: hstreamdb-internal-rqlite
-    port: 80
-    namespace: hstreamdb
   config:
     {{- with .Values.clusterConfig }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
+  rqlite:
+    host: {{ include "hstreamdb.fullname" . }}-{{ .Values.rqlite.nameOverride }}
+    port: {{ default 80 .Values.rqlite.service.port }}
+    namespace: {{ .Release.Namespace | quote }}
   hserver:
     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
     imagePullPolicy: {{ .Values.image.pullPolicy }}

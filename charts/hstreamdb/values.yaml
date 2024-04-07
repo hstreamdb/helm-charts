@@ -48,6 +48,8 @@ adminServer:
   container:
 
 rqlite:
+  # Override the name of the rqlite component to prevent potential conflicts.
+  # You don't need to change this value in most cases.
   nameOverride: internal-rqlite
   replicaCount: 3
   persistence:
