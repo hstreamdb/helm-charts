@@ -48,7 +48,7 @@ adminServer:
   container:
 
 rqlite:
-  nameOverride: hstreamdb-rqlite
+  nameOverride: internal-rqlite
   replicaCount: 3
   persistence:
     size: 1Gi

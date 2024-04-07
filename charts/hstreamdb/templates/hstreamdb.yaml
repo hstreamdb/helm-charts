@@ -6,7 +6,7 @@ metadata:
   labels: {{ include "hstreamdb.labels" . | nindent 4 }}
 spec:
   externalHmeta:
-    host: rqlite
+    host: hstreamdb-internal-rqlite
     port: 80
     namespace: hstreamdb
   config:
@@ -33,6 +33,7 @@ spec:
   hstore:
     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
     imagePullPolicy: {{ .Values.image.pullPolicy }}
+    replicas: {{ .Values.hstore.replicaCount }}
     container:
       name: {{ .Values.hstore.name }}
       {{- if .Values.hstore.container }}
