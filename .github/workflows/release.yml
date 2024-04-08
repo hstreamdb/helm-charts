@@ -28,6 +28,10 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v3
 
+      - name: Add rqlite helm charts
+        run: |
+          helm repo add rqlite https://rqlite.github.io/helm-charts
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
         env:
