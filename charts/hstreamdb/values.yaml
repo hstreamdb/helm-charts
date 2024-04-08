@@ -31,7 +31,7 @@ hserver:
   replicaCount: 3
   container:
 
-storageClassName: "standard"
+storageClassName:
 
 hstore:
   # Name of the hstore component.
@@ -47,14 +47,13 @@ adminServer:
   replicaCount: 1
   container:
 
-hmeta:
-  # Name of the hmeta component.
-  name: hmeta
+rqlite:
+  # Override the name of the rqlite component to prevent potential conflicts.
+  # You don't need to change this value in most cases.
+  nameOverride: internal-rqlite
   replicaCount: 3
-  # Storage size for PVC requests. Must be set.
-  storage: 1Gi
-  rqlite:
-    version: 7.21.4
+  persistence:
+    size: 1Gi
 
 console:
   enabled: false

@@ -23,3 +23,8 @@ version: 0.3.0
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
 appVersion: "latest"
+
+dependencies:
+  - name: rqlite
+    version: "^1.7.0"
+    repository: https://rqlite.github.io/helm-charts

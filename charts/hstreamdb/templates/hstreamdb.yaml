@@ -9,6 +9,10 @@ spec:
     {{- with .Values.clusterConfig }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
+  rqlite:
+    host: {{ include "hstreamdb.fullname" . }}-{{ .Values.rqlite.nameOverride }}
+    port: {{ default 80 .Values.rqlite.service.port }}
+    namespace: {{ .Release.Namespace | quote }}
   hserver:
     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
     imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -53,13 +57,6 @@ spec:
       {{- if .Values.adminServer.container }}
       {{- toYaml .Values.adminServer.container | nindent 6 }}
       {{- end }}
-  hmeta:
-    image: rqlite/rqlite:{{ .Values.hmeta.rqlite.version }}
-    imagePullPolicy: {{ .Values.image.pullPolicy }}
-    replicas: {{ .Values.hmeta.replicaCount }}
-    container:
-      name: {{ .Values.hmeta.name }}
-    volumeClaimTemplate: {{ include "hstreamdb.hmeta.volumeClaimTemplate" . | indent 6 }}
   {{- if .Values.console.enabled }}
   console:
     image: {{ .Values.console.image }}

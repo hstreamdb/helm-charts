@@ -1,0 +1,6 @@
+dependencies:
+- name: rqlite
+  repository: https://rqlite.github.io/helm-charts
+  version: 1.7.0
+digest: sha256:154165408ed6ee455f9bd7b0c29dfadf613b31e24c5c1178b2f9d4e47fa12d43
+generated: "2024-04-03T16:44:36.635842+08:00"
