@@ -1,2 +1,18 @@
 clusterConfig:
   kafkaMode: true
+  # # For external access, set the following fields and uncomment them.
+  # externalAccess:
+  #   accessType: nodeport
+  #   advertisedAddresses:
+  #     - instance: 0
+  #       host: "hstream://localhost"
+  #       port: 31092
+  #       nodePort: 31092
+  #     - instance: 1
+  #       host: "hstream://localhost"
+  #       port: 31093
+  #       nodePort: 31093
+  #     - instance: 2
+  #       host: "hstream://localhost"
+  #       port: 31094
+  #       nodePort: 31094
